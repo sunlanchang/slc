@@ -37,7 +37,7 @@ string KEYWORDS[] = {"INT", "DOUBLE", "STRING", "IF", "ELSE", "WHILE", "FOR", "B
 
 int main()
 {
-    vector<string> code_lines{"INT 0123() 45 ()+-*/=><{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
+    vector<string> code_lines{"INT 0123() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
     for (auto e : code_lines)
     {
         cout << e;
@@ -185,16 +185,80 @@ int get_token(string code_line)
             {
             case '<':
             {
+                bool is_equal = false;
                 operator_tmp += ch;
                 i++;
                 ch = code_line[i];
                 if (ch == '=')
                 {
                     operator_tmp += ch;
+                    is_equal = true;
+                }
+
+                if (is_equal == false)
+                {
+                    i--;
                 }
 
                 tk.type = CLASS_NUMBER;
                 tk.value = operator_tmp;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '>':
+            {
+                bool is_equal = false;
+                operator_tmp += ch;
+                i++;
+                ch = code_line[i];
+                if (ch == '=')
+                {
+                    operator_tmp += ch;
+                    is_equal = true;
+                }
+
+                if (is_equal == false)
+                {
+                    i--;
+                }
+
+                tk.type = CLASS_NUMBER;
+                tk.value = operator_tmp;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '+':
+            {
+                tk.type = OPERATOR;
+                tk.value = ch;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '-':
+            {
+                tk.type = OPERATOR;
+                tk.value = ch;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '*':
+            {
+                tk.type = OPERATOR;
+                tk.value = ch;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '/':
+            {
+                tk.type = OPERATOR;
+                tk.value = ch;
+                RES_TOKENS.push_back(tk);
+                break;
+            }
+            case '=':
+            {
+                tk.type = OPERATOR;
+                tk.value = ch;
                 RES_TOKENS.push_back(tk);
                 break;
             }

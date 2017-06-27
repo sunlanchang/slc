@@ -32,12 +32,12 @@ enum TYPES
 //保存token结果的vector, 1:关键字, 2:标识符(变量、函数的名字), 3:整数, 4:小数, 5:字符串, 6: 分隔符, 7:运算符
 vector<token> RES_TOKENS;
 
-//simple little C的关键字
-string KEYWORDS[] = {"INT", "DOUBLE", "STRING", "IF", "ELSE", "WHILE", "FOR", "BEGIN", "END"};
+//subset little C的关键字
+string KEYWORDS[] = {"int", "double", "string", "if", "else", "while", "for";
 
 int main()
 {
-    vector<string> code_lines{"INT 0123() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
+    vector<string> code_lines{"int 0123() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
     for (auto e : code_lines)
     {
         cout << e;

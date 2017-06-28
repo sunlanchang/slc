@@ -1,4 +1,4 @@
-#include <sun.h>
+#include <head1.h>
 int main()
 {
     double sum;

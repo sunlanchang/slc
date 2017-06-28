@@ -28,7 +28,7 @@ int CLASS_SUM = 7;
 enum TYPES
 {
     KEYWORD = 1,
-    ID = 2,
+    VAR = 2,
     INT = 3,
     DOUBLE = 4,
     STRING = 5,
@@ -55,13 +55,6 @@ int main()
     }
 
     code_lines = erase_space(code_lines);
-
-    //词法分析部分
-    // vector<string> code_lines{"int 0123() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
-    // for (auto e : code_lines)
-    // {
-    //     cout << e;
-    // }
 
     for (auto line : code_lines)
     {
@@ -246,7 +239,7 @@ int get_token(string code_line)
             }
             else
             {
-                CLASS_NUMBER = ID;
+                CLASS_NUMBER = VAR;
             }
             i--;
             tk.value = word;

@@ -22,14 +22,14 @@ int CLASS_SUM = 7;
 enum TYPES
 {
     KEYWORD = 1,
-    ID = 2,
+    VAR = 2,
     INT = 3,
     DOUBLE = 4,
     STRING = 5,
     OPERATOR = 6,
     SEPARATOR = 7
 };
-
+string typename_token[] = {"", "keyword", "var", "int", "double", "string", "operator", "separator"};
 //保存token结果的vector, 1:关键字, 2:标识符(变量、函数的名字), 3:整数, 4:小数, 5:字符串, 6: 分隔符, 7:运算符
 vector<token> RES_TOKENS;
 
@@ -54,7 +54,7 @@ int main()
     // cout << "(";
     for (auto e : RES_TOKENS)
     {
-        cout << e.value << " ," << e.type << endl;
+        cout << e.value << "," << typename_token[e.type] << endl;
     }
     // cout << ")" << endl;
 
@@ -77,7 +77,7 @@ int get_token(string code_line)
             ch == '{' || ch == '}' ||
             ch == '(' || ch == ')')
         {
-            CLASS_NUMBER = OPERATOR;
+            CLASS_NUMBER = SEPARATOR;
             tk.value = ch;
             tk.type = CLASS_NUMBER;
             RES_TOKENS.push_back(tk);
@@ -98,10 +98,10 @@ int get_token(string code_line)
 
             //判断是不是关键字
             bool is_keyword = false;
-            for (int j = 0; j < CLASS_SUM; j++)
+            for (auto e : KEYWORDS)
             {
                 // cout << "word: " << word << " keyword: " << KEYWORDS[j] << endl;
-                if (word == KEYWORDS[j])
+                if (word == e)
                 {
                     is_keyword = true;
                     break;
@@ -114,7 +114,7 @@ int get_token(string code_line)
             }
             else
             {
-                CLASS_NUMBER = ID;
+                CLASS_NUMBER = VAR;
             }
             i--;
             tk.value = word;

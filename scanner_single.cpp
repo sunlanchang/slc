@@ -34,12 +34,12 @@ enum TYPES
 vector<token> RES_TOKENS;
 
 //subset little C的关键字
-string KEYWORDS[] = {"int", "double", "string", "if", "else", "while", "for";
+string KEYWORDS[] = {"int", "double", "string", "if", "else", "while", "for"};
 
 int main()
 {
     //词法分析部分
-    vector<string> code_lines{"int 0123() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
+    vector<string> code_lines{"int 12.3() 45 ()+-*/>1<1>=1<=1+1-1*1/1=1{}\n", "{\n", "cout{}\"hello\"\n", "}\n"};
     for (auto e : code_lines)
     {
         cout << e;

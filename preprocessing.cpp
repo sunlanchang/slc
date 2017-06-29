@@ -58,23 +58,28 @@ vector<string> extend_include(vector<string> code_lines)
     int index = have_sharp(code_lines);
     string filename = "", line_sharp = "";
     line_sharp = code_lines[index];
-    bool flag = false;
-    for (int i = 0; i < line_sharp.size(); i++)
-    {
-        if (line_sharp[i] == '<')
-        {
-            flag = true;
-            i++;
-        }
-        else if (line_sharp[i] == '>')
-        {
-            flag = false;
-        }
-        if (flag == true)
-        {
-            filename += line_sharp[i];
-        }
-    }
+    // bool flag = false;
+    // for (int i = 0; i < line_sharp.size(); i++)
+    // {
+    //     if (line_sharp[i] == '<')
+    //     {
+    //         flag = true;
+    //         i++;
+    //     }
+    //     else if (line_sharp[i] == '>')
+    //     {
+    //         flag = false;
+    //     }
+    //     if (flag == true)
+    //     {
+    //         filename += line_sharp[i];
+    //     }
+    // }
+
+    int pos1 = line_sharp.find('<');
+    int pos2 = line_sharp.find('>');
+    filename = line_sharp.substr(pos1 + 1, pos2 - 1);
+
     ifstream myfile;
     myfile.open(filename, ios_base::in);
     vector<string> head_file;
@@ -134,10 +139,10 @@ vector<string> get_code(const char *filename)
         code_lines.push_back(line);
     }
 
-    for (int i = 0; i < code_lines.size(); i++)
-    {
-        string line_tmp = code_lines[i];
-    }
+    // for (int i = 0; i < code_lines.size(); i++)
+    // {
+    //     string line_tmp = code_lines[i];
+    // }
 
     return code_lines;
 }
